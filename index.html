@@ -3,60 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя первая страница</title>
+    <title>Ангелина — Веб-разработчик</title>
+    <!-- Подключаем современный шрифт от Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- ПЕРЕМЕННЫЕ ЦВЕТОВ (удобно менять в одном месте) --- */
+        :root {
+            --primary: #3498db;
+            --dark: #2c3e50;
+            --light: #f8fafc;
+            --text: #334155;
+            --white: #ffffff;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth; /* Плавная прокрутка по ссылкам меню */
+        }
         body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f8ff;
-        color: #333;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        line-height: 1.6;
-    }
-    h1 {
-        color: #2c3e50;
-        text-align: center;
-        border-bottom: 3px solid #3498db;
-        padding-bottom: 10px;
-    }
-    h2 {
-        color: #3498db;
-    }
-    ul {
-        background-color: #ffffff;
-        padding: 20px 40px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    li {
-        margin-bottom: 8px;
-    }
-    a {
-        color: #e74c3c;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- ШАПКА И МЕНЮ --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: var(--dark);
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .hero img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+            flex-shrink: 0;
+        }
+        .hero-text h1 {
+            font-size: 2.2em;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .hero-text p {
+            font-size: 1.1em;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        /* --- КНОПКИ --- */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- СЕКЦИИ И ЗАГОЛОВКИ --- */
+        section {
+            margin-bottom: 50px;
+        }
+        h2 {
+            font-size: 1.8em;
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+
+        /* --- КАРТОЧКИ УСЛУГ --- */
+        .services-grid {
+            display: grid;
+
+
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .card h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        /* --- СПИСОК НАВЫКОВ --- */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+        .skills-list li {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+        .skills-list li:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- ПОДВАЛ (FOOTER) --- */
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid var(--light);
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        /* --- АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ --- */
+        max-width: 700px {
+            .container { padding: 20px; margin: 20px auto; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+            .hero { flex-direction: column; text-align: center; gap: 20px; }
+            .hero img { width: 140px; height: 140px; }
+            .hero-text h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Привет! Меня зовут Ангелина</h1>
-    
-    <p>Я учусь веб-разработке, потому что хочу создавать сайты и работать на фрилансе.</p>
-    
-    <h2>Мои любимые фильмы:</h2>
-    <ul>
-        <li>Интерстеллар</li>
-        <li>Начало</li>
-        <li>Гарри Поттер</li>
-    </ul>
-    
-    <h2>Полезная ссылка:</h2>
-    <p>Сайт, где я планирую работать: <a href="https://kwork.ru" target="_blank">Kwork</a></p>
+<div class="container">
+
+    <!-- ШАПКА И МЕНЮ -->
+    <header>
+        <div class="logo">Ангелина Б.</div>
+        <nav>
+            <a href="#services">Услуги</a>
+            <a href="#skills">Навыки</a>
+            <a href="#portfolio">Работы</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <img src="foto.jpg..jpg" alt="Моё фото">
+        <div class="hero-text">
+            <h1>Привет, я Ангелина 👋</h1>
+            <p>Начинающий веб-разработчик. Верстаю адаптивные лендинги по макетам Figma.</p>
+            <a href="#contact" class="btn">Связаться со мной</a>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section id="services">
+        <h2>Чем я могу помочь</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Верстка лендингов</h3>
+                <p>Создам одностраничный сайт по вашему макету из Figma. Чистый код, адаптивность.</p>
+            </div>
+            <div class="card">
+                <h3>Адаптивная верстка</h3>
+                <p>Ваш сайт будет идеально выглядеть на телефонах, планшетах и компьютерах.</p>
+            </div>
+            <div class="card">
+                <h3>Правки и доработки</h3>
+                <p>Исправлю ошибки в верстке, добавлю новые блоки или подключу формы связи.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- НАВЫКИ -->
+    <section id="skills">
+        <h2>Мои навыки</h2>
+        <ul class="skills-list">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>Flexbox</li>
+            <li>Grid</li>
+            <li>Адаптивность</li>
+            <li>Figma</li>
+            <li>GitHub</li>
+        </ul>
+    </section>
+
+    <!-- ПОРТФОЛИО -->
+    <section id="portfolio">
+        <h2>Мои работы</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Сайт-визитка</h3>
+                <p>Адаптивная страница с профилем, навыками и услугами.</p>
+                <a href="https://angelina-lin8.github.io/my-first-site/" target="_blank" style="color: var(--pri
+Моя первая страница
+angelina-lin8.github.io
+
+
+mary); font-weight: 600; text-decoration: none;">Посмотреть →</a>
+            </div>
+            <!-- Сюда будешь добавлять новые карточки, когда сделаешь другие проекты -->
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contact">
+        <h2>Связаться со мной</h2>
+        <p style="margin-bottom: 20px;">Готова обсудить ваш проект. Напишите мне на Kwork!</p>
+        <a href="https://kwork.ru" target="_blank" class="btn">Написать на Kwork</a>
+        <a href="https://github.com/angelina-lin8" target="_blank" class="btn btn-outline" style="margin-left: 10px;">Мой GitHub</a>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <p>© 2026 Ангелина Бахарева. Сделано с ❤️ и кодом.</p>
+    </footer>
+
+</div>
 
 </body>
 </html>
+
+
+
+
+
